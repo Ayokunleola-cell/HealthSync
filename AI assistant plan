@@ -1,0 +1,289 @@
+# HealthSync AI Assistant — Model Training Plan
+
+## Current State
+
+Your AI assistant ([ai_service.py](file:///c:/Users/Administrator/Desktop/HealthSys/HealthSync-Comprehensive/backend/utils/ai_service.py)) currently uses:
+- **Groq API** (LLaMA 3.3 70B) or **OpenAI** as external LLM providers
+- **Rule-based fallbacks** when no API key is configured
+- **Hardcoded knowledge base** for drug interactions (only 4 drugs), vital ranges, and care protocols (only 3 conditions)
+
+> [!IMPORTANT]
+> The current system is NOT trained — it relies on generic LLM prompts and static lookup tables. This plan will make each feature significantly more accurate and clinically relevant.
+
+---
+
+## Strategy Overview: Hybrid Architecture
+
+Rather than training a single monolithic model, I recommend a **hybrid approach** — the right tool for each job:
+
+| Feature | Approach | Why |
+|---------|----------|-----|
+| **Care Notes AI** | Fine-tuned LLM (Mistral 7B or LLaMA 3.1 8B) | Requires natural language generation with medical terminology |
+| **Recommendations** | RAG (Retrieval-Augmented Generation) + Fine-tuned LLM | Needs access to clinical guidelines + patient context |
+| **Risk Analysis** | Gradient Boosted Trees (XGBoost/LightGBM) | Tabular patient data → risk score is a classic ML classification task |
+| **Drug Interactions** | Knowledge Graph + NER model | Structured relational data; lookup + severity classification |
+| **Vital Analysis** | Time-series anomaly detection (LSTM/Isolation Forest) | Sequential vital sign data → trend detection |
+
+---
+
+## Feature 1: Care Notes AI
+
+### Model
+**Mistral 7B Instruct** (fine-tuned) or **BioMistral 7B**
+- Small enough to run locally on a GPU with 16GB VRAM, or deploy on RunPod/Lambda
+- BioMistral is already pre-trained on biomedical text
+
+### Datasets
+
+| Dataset | Source | Size | License |
+|---------|--------|------|---------|
+| **MIMIC-III Clinical Notes** | [PhysioNet](https://physionet.org/content/mimiciii/1.4/) | ~2M notes | PhysioNet Credentialed (free, requires application) |
+| **MIMIC-IV Discharge Summaries** | [PhysioNet](https://physionet.org/content/mimic-iv-note/2.2/) | ~330K notes | PhysioNet Credentialed |
+| **i2b2 Clinical NLP Datasets** | [DBMI Portal](https://portal.dbmi.hms.harvard.edu/) | ~1K annotated notes | DUA required |
+| **PMC-Patients** | [HuggingFace](https://huggingface.co/datasets/zhengyun21/PMC-Patients) | ~167K patient summaries | Open |
+| **MedText** | [HuggingFace](https://huggingface.co/datasets/BI55/MedText) | Clinical text samples | Open |
+
+### Training Approach
+1. **Get MIMIC-III access** (takes 1-2 weeks — sign DUA on PhysioNet, complete CITI training)
+2. Extract `NOTEEVENTS` table → filter for nursing care notes, discharge summaries
+3. Create instruction-tuning pairs: `{input: patient_vitals + context, output: clinical_note}`
+4. Fine-tune with **QLoRA** (4-bit quantization) using `transformers` + `peft` + `trl`
+5. ~5,000-10,000 high-quality pairs is sufficient for fine-tuning
+
+### Hardware
+- **Training**: 1x NVIDIA A100 40GB (or 2x RTX 4090) — ~$1-2/hr on RunPod/Lambda
+- **Inference**: Can run on CPU with GGUF quantization via `llama.cpp`, or 1x RTX 3090
+
+---
+
+## Feature 2: AI Recommendations (RAG)
+
+### Model
+**RAG Pipeline**: Embedding model + Vector DB + Fine-tuned LLM
+
+| Component | Tool |
+|-----------|------|
+| Embeddings | `all-MiniLM-L6-v2` (384-dim, fast) or `BioLORD-2023-M` (biomedical) |
+| Vector Store | ChromaDB (local, lightweight) or FAISS |
+| Generator LLM | Same Mistral 7B from Feature 1 |
+
+### Datasets (Knowledge Base for RAG)
+
+| Dataset | Source | Description |
+|---------|--------|-------------|
+| **ClinicalGuidelines.gov** | [guidelines.gov archive](https://www.ahrq.gov/gam/index.html) | AHRQ clinical practice guidelines |
+| **UpToDate-like Summaries** | [WikiDoc](https://www.wikidoc.org/) | Open medical wiki with treatment guidelines |
+| **OpenGuidelines** | [GitHub](https://github.com/openmedx/guidelines) | Community medical guidelines |
+| **PubMedQA** | [HuggingFace](https://huggingface.co/datasets/qiaojin/PubMedQA) | ~273K biomedical QA pairs |
+| **MedQuAD** | [GitHub](https://github.com/abachaa/MedQuAD) | ~47K medical QA pairs from NIH |
+| **Home Care Best Practices** | CMS / Medicare Conditions of Participation | Home health care protocols |
+
+### Training Approach
+1. **Chunk** clinical guidelines into ~512-token passages
+2. **Embed** using BioLORD-2023-M and store in ChromaDB
+3. At query time: retrieve top-5 relevant chunks → inject into LLM prompt
+4. Fine-tune the generator LLM on `{question + retrieved_context → recommendation}` pairs
+5. No MIMIC access needed — public guidelines are sufficient
+
+---
+
+## Feature 3: Risk Analysis
+
+### Model
+**XGBoost** or **LightGBM** (gradient boosted decision trees)
+- Best for tabular patient data
+- Interpretable (feature importance = explainable risk factors)
+- Fast inference, no GPU needed
+
+### Datasets
+
+| Dataset | Source | Features |
+|---------|--------|----------|
+| **MIMIC-III / MIMIC-IV** | [PhysioNet](https://physionet.org/content/mimiciii/1.4/) | Patient demographics, vitals, labs, outcomes |
+| **eICU Collaborative Research Database** | [PhysioNet](https://physionet.org/content/eicu-crd/2.0/) | 200K+ ICU stays with outcomes |
+| **Heart Failure Clinical Records** | [UCI ML Repo](https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records+dataset) | 299 patients, 13 features |
+| **Diabetes 130-US Hospitals** | [UCI ML Repo](https://archive.ics.uci.edu/dataset/296/diabetes+130+us+hospitals+for+years+1999+2008) | 100K+ patient records |
+| **Home Healthcare Readmission** | [CMS OASIS Dataset](https://www.cms.gov/Medicare/Quality-Initiatives-Patient-Assessment-Instruments/HomeHealthQualityInits) | Home health patient outcomes |
+| **Framingham Heart Study** | [Kaggle](https://www.kaggle.com/datasets/dileep070/heart-disease-prediction-using-logistic-regression) | Cardiovascular risk prediction |
+
+### Training Approach
+1. **Feature engineering** from patient data:
+   - Demographics (age, gender, BMI)
+   - Vital sign trends (rolling averages, variance)
+   - Medication adherence rate
+   - Number of ADL deficits
+   - Comorbidity count (Charlson index)
+   - Days since last hospital visit
+   - Fall history count
+2. **Target variable**: Risk level (low/moderate/high) or readmission within 30 days
+3. Train XGBoost with 5-fold cross-validation
+4. Export model with `joblib` → load in your existing [ml_agent.py](file:///c:/Users/Administrator/Desktop/HealthSys/HealthSync-Comprehensive/backend/agents/ml_agent.py)
+
+### Code Integration
+```python
+# Replace heuristics in ml_agent.py with:
+import joblib
+self.risk_model = joblib.load("models/risk_xgboost.pkl")
+risk_score = self.risk_model.predict_proba(features)[0][1]  # probability of high risk
+```
+
+---
+
+## Feature 4: Drug Interactions
+
+### Model
+**Knowledge Graph** + optional **NER model** for medication extraction
+
+### Datasets
+
+| Dataset | Source | Size | Format |
+|---------|--------|------|--------|
+| **DrugBank** | [drugbank.com](https://go.drugbank.com/releases/latest) | 14,000+ drugs, 300K+ interactions | XML (free academic license) |
+| **RxNorm** | [NLM/NIH](https://www.nlm.nih.gov/research/umls/rxnorm/index.html) | Standard drug nomenclature | RRF files (free UMLS license) |
+| **DDI Corpus** | [GitHub](https://github.com/isegura/DDICorpus) | 1,017 texts, 5,021 DDI annotations | XML (NER training) |
+| **TWOSIDES** | [tatonettilab.org](http://tatonetti-lab.org/resources/tatonetti-stm.html) | 868 drugs, 1,318 side effects | CSV |
+| **FDA Adverse Event Reporting (FAERS)** | [FDA](https://open.fda.gov/data/faers/) | Millions of adverse events | JSON API |
+| **NDF-RT (Drug Interactions)** | [NLM](https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/NDFRT/) | Structured drug-drug interactions | UMLS |
+
+### Training Approach
+1. **Download DrugBank XML** (apply for academic license — approved in 1-3 days)
+2. Parse `<drug-interactions>` elements → build interaction database
+3. Store in SQLite table: `drug_a, drug_b, severity, description, mechanism`
+4. Replace your current 4-drug hardcoded dictionary with **14,000+ drugs**
+5. **(Optional)** Train a **BioBERT NER model** on DDI Corpus to extract drug names from free-text clinical notes
+6. **(Optional)** Use FAERS data to add real-world severity scoring
+
+### Code Integration
+```python
+# Replace hardcoded dict in ai_service.py with:
+def check_drug_interactions(self, medications):
+    interactions = []
+    for i, drug_a in enumerate(medications):
+        for drug_b in medications[i+1:]:
+            result = db.query(
+                "SELECT * FROM drug_interactions WHERE drug_a=? AND drug_b=?",
+                [normalize(drug_a), normalize(drug_b)]
+            )
+            if result:
+                interactions.append(result)
+    return interactions
+```
+
+---
+
+## Feature 5: Vital Analysis
+
+### Model
+**Isolation Forest** (anomaly detection) + **LSTM** (trend prediction)
+
+### Datasets
+
+| Dataset | Source | Description |
+|---------|--------|-------------|
+| **MIMIC-III Waveform Database** | [PhysioNet](https://physionet.org/content/mimic3wdb/1.0/) | Continuous vital sign waveforms |
+| **MIMIC-IV (vitalsign table)** | [PhysioNet](https://physionet.org/content/mimic-iv/2.2/) | Structured vital readings |
+| **eICU Vital Signs** | [PhysioNet](https://physionet.org/content/eicu-crd/2.0/) | Periodic vital measurements |
+| **VitalDB** | [vitaldb.net](https://vitaldb.net/) | 6,388 surgical cases with continuous vitals |
+| **UCR Time Series Archive** | [UCR](https://www.cs.ucr.edu/~eamonn/time_series_data_2018/) | Benchmark time series datasets |
+
+### Training Approach
+
+#### Anomaly Detection (Isolation Forest)
+1. Train on normal vital ranges from MIMIC-IV
+2. Features: heart_rate, systolic_bp, diastolic_bp, spo2, temperature, respiratory_rate
+3. Model flags readings that deviate from learned normal patterns
+4. Much better than your current static threshold approach
+
+#### Trend Prediction (LSTM)
+1. Build sequences: `[vital_t-5, vital_t-4, ..., vital_t] → vital_t+1`
+2. Train on MIMIC waveform data or periodic vitals
+3. Predict next-hour vitals → flag if predicted values enter danger zone
+4. Enables **proactive alerts** before vitals actually become critical
+
+```python
+# Enhanced vital analysis
+from sklearn.ensemble import IsolationForest
+anomaly_detector = IsolationForest(contamination=0.05)
+anomaly_detector.fit(training_vitals)
+is_anomaly = anomaly_detector.predict(new_vitals)  # -1 = anomaly
+```
+
+---
+
+## Phased Implementation Roadmap
+
+### Phase A: Quick Wins (Week 1-2) — No Training Required
+- [ ] **Drug Interactions**: Download DrugBank → parse XML → populate SQLite table → replace hardcoded 4-drug dictionary with 14,000+ drugs
+- [ ] **RAG Setup**: Chunk clinical guidelines → embed with BioLORD → store in ChromaDB → enhance recommendations with retrieved context
+- [ ] **Vital Analysis**: Train Isolation Forest on existing patient data or MIMIC vitals (< 1 hour to train)
+
+### Phase B: ML Models (Week 3-4)
+- [ ] **Risk Analysis**: Feature engineer from your existing database → train XGBoost → deploy as `risk_xgboost.pkl`
+- [ ] **Vital Trend Prediction**: Train LSTM on vital time-series data
+- [ ] Apply for MIMIC-III/IV PhysioNet access (if not already done)
+
+### Phase C: LLM Fine-Tuning (Week 5-8)
+- [ ] Get MIMIC access approved
+- [ ] Extract and clean clinical notes
+- [ ] Create instruction-tuning dataset (~5-10K pairs)
+- [ ] Fine-tune BioMistral 7B with QLoRA
+- [ ] Deploy locally with `llama.cpp` or `vLLM`
+- [ ] Replace Groq/OpenAI API dependency with local model
+
+---
+
+## Infrastructure Options
+
+| Option | Cost | Pros | Cons |
+|--------|------|------|------|
+| **Local (RTX 3090/4090)** | $0 (after purchase) | No ongoing cost, data stays local | Limited VRAM, slower training |
+| **RunPod** | ~$0.80-2.50/hr | A100 GPUs on demand, hourly billing | Data leaves local |
+| **Lambda Labs** | ~$1.10/hr | A100/H100 available | Less available |
+| **Google Colab Pro** | $12/month | Good for prototyping | Timeouts, limited sessions |
+| **Groq API** (inference only) | Free tier available | Fastest inference, no GPU needed | No fine-tuning, external dependency |
+
+---
+
+## Summary of All Datasets to Obtain
+
+| Priority | Dataset | URL | Access Time |
+|----------|---------|-----|-------------|
+| 🔴 **Critical** | DrugBank | [drugbank.com](https://go.drugbank.com/) | 1-3 days (academic) |
+| 🔴 **Critical** | MIMIC-III/IV | [physionet.org](https://physionet.org/) | 1-2 weeks (CITI training + DUA) |
+| 🟡 **Important** | PubMedQA | [HuggingFace](https://huggingface.co/datasets/qiaojin/PubMedQA) | Instant (open) |
+| 🟡 **Important** | MedQuAD | [GitHub](https://github.com/abachaa/MedQuAD) | Instant (open) |
+| 🟡 **Important** | PMC-Patients | [HuggingFace](https://huggingface.co/datasets/zhengyun21/PMC-Patients) | Instant (open) |
+| 🟢 **Nice to have** | DDI Corpus | [GitHub](https://github.com/isegura/DDICorpus) | Instant (open) |
+| 🟢 **Nice to have** | Heart Failure UCI | [UCI](https://archive.ics.uci.edu/dataset/519/) | Instant (open) |
+| 🟢 **Nice to have** | FAERS | [FDA](https://open.fda.gov/data/faers/) | Instant (API) |
+
+---
+
+## Open Questions
+
+> [!IMPORTANT]
+> **1. Do you have a GPU available?** (RTX 3090, 4090, or cloud access?) This determines whether we fine-tune locally or use cloud services.
+
+> [!IMPORTANT]
+> **2. Do you want to keep using Groq/OpenAI API for inference, or go fully self-hosted?** Self-hosted gives you full control and no API costs, but requires a GPU for the LLM.
+
+> [!WARNING]
+> **3. MIMIC access requires CITI ethics training** (~2-4 hours online course). Are you willing to complete this? Without MIMIC, we can still use the open datasets (PMC-Patients, PubMedQA, MedQuAD) but with reduced clinical note quality.
+
+> **4. Do you want to start with Phase A (quick wins) while waiting for MIMIC access?** This gets DrugBank (14K+ drugs), RAG recommendations, and anomaly detection working immediately.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- Extend existing [test_comprehensive.py](file:///c:/Users/Administrator/Desktop/HealthSys/HealthSync-Comprehensive/backend/tests/test_comprehensive.py) with model accuracy benchmarks
+- Drug interaction precision/recall against TWOSIDES ground truth
+- Risk prediction AUC-ROC on held-out test set (target: >0.80)
+- Vital anomaly detection F1-score (target: >0.85)
+
+### Manual Verification
+- Test care note generation with various patient profiles
+- Verify drug interactions match DrugBank reference
+- Compare risk scores against physician assessments
+- End-to-end testing through the AI Assistant UI
