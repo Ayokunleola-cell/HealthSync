@@ -1,0 +1,81 @@
+.alertsPage {
+    max-width: 800px;
+}
+
+.header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.sectionBlock {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.sectionTitle {
+    margin-bottom: var(--spacing-lg);
+    font-size: 1rem;
+}
+
+.alertsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.alertCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    border-left: 4px solid var(--primary-500);
+}
+
+.alertCard.urgent {
+    border-left-color: var(--error);
+    background: rgba(245, 101, 101, 0.1);
+}
+
+.alertCard.high {
+    border-left-color: var(--warning);
+}
+
+.alertCard.read {
+    opacity: 0.7;
+    border-left-color: var(--text-muted);
+}
+
+.alertIcon {
+    font-size: 1.25rem;
+}
+
+.alertContent {
+    flex: 1;
+}
+
+.alertContent p {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin: 4px 0;
+}
+
+.alertTime {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+}
+
+.noData {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+}

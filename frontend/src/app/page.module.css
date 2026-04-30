@@ -1,0 +1,239 @@
+.dashboard {
+  max-width: 1400px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.header h1 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.headerActions {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  gap: var(--spacing-lg);
+}
+
+/* Alerts Section */
+.alertsSection {
+  background: rgba(245, 101, 101, 0.1);
+  border: 1px solid rgba(245, 101, 101, 0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.alertsSection h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--error);
+}
+
+.alertsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.alertCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--warning);
+}
+
+.alertCard.urgent {
+  border-left-color: var(--error);
+}
+
+.alertCard.high {
+  border-left-color: var(--warning);
+}
+
+.alertIcon {
+  font-size: 1.5rem;
+}
+
+.alertCard p {
+  font-size: 0.875rem;
+  margin-top: var(--spacing-xs);
+}
+
+/* Patients Section */
+.patientsSection {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.viewAll {
+  font-size: 0.875rem;
+  color: var(--primary-400);
+}
+
+.patientsGrid {
+  margin-bottom: var(--spacing-xl);
+}
+
+.patientCard {
+  padding: var(--spacing-xl);
+}
+
+.patientHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.patientAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.patientHeader h3 {
+  font-size: 1.125rem;
+  margin-bottom: 2px;
+}
+
+.condition {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.vitalsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.vitalItem {
+  background: var(--bg-glass);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.vitalLabel {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.vitalValue {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.noData {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: var(--spacing-lg);
+}
+
+.patientActions {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.patientActions .btn {
+  flex: 1;
+}
+
+/* Quick Actions */
+.quickActions h2 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+}
+
+.actionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all var(--transition-fast);
+}
+
+.actionCard:hover {
+  background: var(--bg-glass);
+  border-color: var(--primary-500);
+  transform: translateY(-2px);
+}
+
+.actionCard span:first-child {
+  font-size: 2rem;
+}
+
+.actionCard span:last-child {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .actionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  .headerActions {
+    width: 100%;
+  }
+
+  .actionsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .patientActions {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,248 @@
+.notificationsPage {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #38a169;
+}
+
+.header p {
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.headerActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.loading,
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    gap: 1rem;
+    color: #718096;
+    text-align: center;
+}
+
+.emptyState h3 {
+    color: #1a202c;
+}
+
+/* Filter Tabs */
+.filterTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+    padding: 0.25rem;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+.filterTab {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #718096;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.filterTab:hover {
+    color: #1a202c;
+}
+
+.filterTab.active {
+    background: #ffffff;
+    color: #38a169;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.filterTab .badge {
+    background: #ef4444;
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Notifications List */
+.notificationsList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.notificationItem {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.notificationItem:hover {
+    border-color: #38a169;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.notificationItem.unread {
+    background: rgba(56, 161, 105, 0.03);
+    border-left: 3px solid #38a169;
+}
+
+.notifIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.notifContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.notifHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+}
+
+.notifTitle {
+    font-weight: 600;
+    color: #1a202c;
+    font-size: 0.95rem;
+}
+
+.urgentBadge {
+    background: #ef4444;
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.highBadge {
+    background: #f59e0b;
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.notifMessage {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.notifMeta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.notifTime {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.notifPatient {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.notifActions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.unreadDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #38a169;
+}
+
+.deleteBtn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    color: #a0aec0;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .filterTabs {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .filterTab {
+        white-space: nowrap;
+    }
+
+    .headerActions {
+        width: 100%;
+    }
+
+    .headerActions .btn {
+        flex: 1;
+    }
+}

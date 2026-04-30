@@ -1,0 +1,75 @@
+.carePage {
+    max-width: 1200px;
+}
+
+.header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.mainGrid {
+    margin-top: var(--spacing-xl);
+}
+
+.logsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.logItem {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+}
+
+.logIcon {
+    font-size: 1.5rem;
+}
+
+.logContent {
+    flex: 1;
+}
+
+.logHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.logTime {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.logContent p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.logBy {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.noData {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+}

@@ -1,0 +1,74 @@
+.aptPage {
+    max-width: 700px;
+}
+
+.header {
+    margin-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.aptList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.aptCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--bg-card);
+    border: 2px solid var(--primary-500);
+    border-radius: var(--radius-2xl);
+}
+
+.aptDate {
+    min-width: 80px;
+    text-align: center;
+    padding: var(--spacing-md);
+    background: var(--primary-500);
+    border-radius: var(--radius-lg);
+    color: white;
+}
+
+.day {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.month {
+    display: block;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.aptInfo h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.time {
+    font-size: 1.25rem;
+    color: var(--primary-400);
+}
+
+.noData {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    padding: var(--spacing-2xl);
+}

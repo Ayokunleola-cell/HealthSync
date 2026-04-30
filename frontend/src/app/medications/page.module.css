@@ -1,0 +1,74 @@
+.medsPage {
+    max-width: 1000px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xl);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.formCard {
+    margin: var(--spacing-xl) 0;
+}
+
+.formActions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.medsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.medCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+}
+
+.medIcon {
+    font-size: 2rem;
+}
+
+.medInfo h4 {
+    margin-bottom: 4px;
+}
+
+.medInfo p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.instructions {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    max-width: 200px;
+    text-align: right;
+}
+
+.noData {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+}

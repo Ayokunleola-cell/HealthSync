@@ -1,0 +1,412 @@
+.detailsPage {
+    max-width: 1400px;
+}
+
+.loading,
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    gap: var(--spacing-lg);
+}
+
+.error a {
+    color: var(--primary-400);
+}
+
+/* Header */
+.header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.backLink {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-md);
+    display: inline-block;
+}
+
+.backLink:hover {
+    color: var(--primary-500);
+}
+
+.patientHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.patientHeader h1 {
+    margin-bottom: 4px;
+}
+
+.condition {
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.actions {
+    margin-left: auto;
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* Stats Grid */
+.statsGrid {
+    margin-bottom: var(--spacing-xl);
+}
+
+.statCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+}
+
+.statIcon {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--primary-500);
+    min-width: 24px;
+}
+
+.statValue {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.statLabel {
+    display: block;
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+}
+
+/* Medication Administration Section */
+.medicationSection {
+    margin-bottom: var(--spacing-xl);
+}
+
+.medGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.medColumn {
+    min-height: 100px;
+}
+
+.medColumnTitle {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: 0.9375rem;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pendingDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--warning);
+}
+
+.doneDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+}
+
+.medList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.medCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--warning);
+}
+
+.medCard.administered {
+    border-left-color: var(--success);
+    opacity: 0.85;
+}
+
+.medInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.medInfo strong {
+    font-size: 0.875rem;
+}
+
+.medDosage {
+    font-size: 0.8125rem;
+    color: var(--primary-600);
+    font-weight: 500;
+}
+
+.medTime {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.medInstructions {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.medBy {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+}
+
+.doneBadge {
+    font-size: 0.6875rem;
+}
+
+.allDone {
+    color: var(--success);
+    font-size: 0.875rem;
+    padding: var(--spacing-lg);
+    text-align: center;
+    background: rgba(72, 187, 120, 0.1);
+    border-radius: var(--radius-md);
+}
+
+.noneYet {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+/* Medication Log Table */
+.medLogSection {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+}
+
+.medLogSection h4 {
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.logTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+}
+
+.logTable th,
+.logTable td {
+    padding: var(--spacing-sm);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logTable th {
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-glass);
+}
+
+.logTable td {
+    color: var(--text-secondary);
+}
+
+/* Main Grid */
+.mainGrid {
+    gap: var(--spacing-lg);
+}
+
+.mainGrid section {
+    margin-bottom: var(--spacing-md);
+}
+
+.mainGrid h3 {
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.9375rem;
+}
+
+.viewAll {
+    font-size: 0.75rem;
+    color: var(--primary-500);
+}
+
+/* Condition */
+.conditionNotes {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.contactInfo {
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8125rem;
+}
+
+.contactInfo p {
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Vitals History */
+.vitalsHistory {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.vitalRow {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--bg-glass);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+}
+
+.vitalTime {
+    color: var(--text-muted);
+    min-width: 70px;
+}
+
+/* Appointments */
+.aptList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.aptItem {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--bg-glass);
+    border-radius: var(--radius-sm);
+    font-size: 0.8125rem;
+}
+
+.aptDate {
+    min-width: 50px;
+    text-align: center;
+}
+
+.aptDate span {
+    display: block;
+    font-size: 0.6875rem;
+}
+
+.aptDate span:last-child {
+    color: var(--primary-500);
+    font-weight: 600;
+}
+
+.aptItem p {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+}
+
+/* Care Logs */
+.logsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.logItem {
+    padding: var(--spacing-sm);
+    background: var(--bg-glass);
+    border-radius: var(--radius-sm);
+}
+
+.logHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.logType {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    color: var(--primary-500);
+    font-weight: 600;
+}
+
+.logTime {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+}
+
+.logItem p {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+/* Quick Actions */
+.quickActions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xs);
+}
+
+.noData {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.75rem;
+    padding: var(--spacing-md);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .patientHeader {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .actions {
+        margin-left: 0;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .medGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,120 @@
+.emergencyPage {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.warningCard {
+    background: rgba(237, 137, 54, 0.2);
+    border: 2px solid var(--warning);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-2xl);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.warningIcon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: var(--spacing-lg);
+}
+
+.warningCard h1 {
+    margin-bottom: var(--spacing-md);
+}
+
+.warningCard p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.note {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.emergencyButton {
+    width: 100%;
+    padding: var(--spacing-2xl);
+    background: linear-gradient(135deg, #f56565, #c53030);
+    border: none;
+    border-radius: var(--radius-2xl);
+    cursor: pointer;
+    margin-bottom: var(--spacing-2xl);
+    box-shadow: 0 10px 40px rgba(245, 101, 101, 0.5);
+    transition: all var(--transition-base);
+    animation: pulse 2s infinite;
+}
+
+.emergencyButton:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 50px rgba(245, 101, 101, 0.6);
+}
+
+.emergencyButton:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    animation: none;
+}
+
+.btnIcon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: var(--spacing-md);
+}
+
+.btnText {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 1px;
+    display: block;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 10px 40px rgba(245, 101, 101, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 10px 60px rgba(245, 101, 101, 0.7);
+    }
+}
+
+.alternativeCard {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    text-align: left;
+}
+
+.alternativeCard h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+.alternativeCard p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.sentCard {
+    background: rgba(72, 187, 120, 0.2);
+    border: 2px solid var(--success);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-2xl);
+}
+
+.checkIcon {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: var(--spacing-lg);
+}
+
+.sentCard h1 {
+    color: var(--success);
+    margin-bottom: var(--spacing-lg);
+}
+
+.sentCard p {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.125rem;
+}

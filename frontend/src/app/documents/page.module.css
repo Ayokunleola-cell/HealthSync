@@ -1,0 +1,350 @@
+.documentsPage {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #38a169;
+}
+
+.header p {
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.loading,
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+    color: #718096;
+    text-align: center;
+}
+
+.emptyState h3 {
+    color: #1a202c;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.filters .input-group {
+    min-width: 200px;
+}
+
+/* Category Pills */
+.categoryPills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pill {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background: #ffffff;
+    color: #718096;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pill:hover {
+    border-color: #38a169;
+    color: #38a169;
+}
+
+.pill.active {
+    background: #38a169;
+    border-color: #38a169;
+    color: white;
+}
+
+/* Documents Grid */
+.documentsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+}
+
+.docCard {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    transition: all 0.2s ease;
+}
+
+.docCard:hover {
+    border-color: #38a169;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.docIcon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #38a169, #48bb78);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.docInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.docName {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.docCategory {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: #f7fafc;
+    color: #718096;
+    margin-bottom: 0.5rem;
+}
+
+.docCategory.medical {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+}
+
+.docCategory.legal {
+    background: rgba(139, 92, 246, 0.15);
+    color: #7c3aed;
+}
+
+.docCategory.insurance {
+    background: rgba(59, 130, 246, 0.15);
+    color: #2563eb;
+}
+
+.docCategory.consent {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+}
+
+.docCategory.care_plan {
+    background: rgba(20, 184, 166, 0.15);
+    color: #0d9488;
+}
+
+.docCategory.report {
+    background: rgba(249, 115, 22, 0.15);
+    color: #ea580c;
+}
+
+.docCategory.photo {
+    background: rgba(236, 72, 153, 0.15);
+    color: #db2777;
+}
+
+.docPatient {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    color: #718096;
+    margin-bottom: 0.35rem;
+}
+
+.docDescription {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.docMeta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: #718096;
+    margin-bottom: 0.35rem;
+}
+
+.docUploader {
+    font-size: 0.75rem;
+    color: #718096;
+}
+
+.docActions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.actionBtn {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: #ffffff;
+    color: #718096;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.actionBtn:hover {
+    border-color: #38a169;
+    color: #38a169;
+}
+
+.actionBtn.deleteBtn:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+/* Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+}
+
+.modal {
+    background: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10000;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.modalHeader h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    color: #1a202c;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #718096;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+    background: #f7fafc;
+    color: #1a202c;
+}
+
+.uploadForm {
+    padding: 1.5rem;
+    background: #ffffff;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.uploadForm .input-group {
+    margin-bottom: 1rem;
+}
+
+.uploadForm textarea {
+    resize: vertical;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    background: #f7fafc;
+    flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .documentsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .docCard {
+        flex-direction: column;
+    }
+
+    .docIcon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .docActions {
+        flex-direction: row;
+    }
+}

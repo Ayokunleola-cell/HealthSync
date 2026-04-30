@@ -1,0 +1,265 @@
+.reportsPage {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #38a169;
+}
+
+.header p {
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.loading,
+.accessDenied {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+    color: #718096;
+    text-align: center;
+}
+
+.accessDenied h2 {
+    color: #1a202c;
+}
+
+/* Filters Card */
+.filtersCard {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+}
+
+.filtersCard h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #1a202c;
+}
+
+.filtersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.filtersGrid .input-group {
+    margin-bottom: 0;
+}
+
+/* Report Types Grid */
+.reportTypesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.reportCard {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.reportCard:hover {
+    border-color: #38a169;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.reportCard.selected {
+    border-color: #38a169;
+    background: rgba(56, 161, 105, 0.05);
+}
+
+.reportIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #38a169, #48bb78);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.reportInfo {
+    flex: 1;
+}
+
+.reportInfo h4 {
+    font-size: 1rem;
+    color: #1a202c;
+    margin-bottom: 0.25rem;
+}
+
+.reportInfo p {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.generateBtn {
+    padding: 0.5rem 1rem;
+    background: #38a169;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.generateBtn:hover {
+    background: #2f855a;
+}
+
+/* Result Card */
+.resultCard {
+    padding: 1.5rem;
+}
+
+.resultHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.resultHeader h3 {
+    font-size: 1.25rem;
+    color: #1a202c;
+}
+
+.exportButtons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.reportPeriod {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-bottom: 1.5rem;
+}
+
+/* Summary Grid */
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summaryItem {
+    text-align: center;
+    padding: 1rem;
+    background: #f7fafc;
+    border-radius: 8px;
+}
+
+.summaryValue {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #38a169;
+    margin-bottom: 0.25rem;
+}
+
+.summaryLabel {
+    font-size: 0.8rem;
+    color: #718096;
+    text-transform: capitalize;
+}
+
+/* Chart Section */
+.chartSection {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.chartSection h4 {
+    font-size: 1rem;
+    color: #1a202c;
+    margin-bottom: 1rem;
+}
+
+.barChart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.barItem {
+    display: grid;
+    grid-template-columns: 120px 1fr 60px;
+    align-items: center;
+    gap: 1rem;
+}
+
+.barLabel {
+    font-size: 0.85rem;
+    color: #1a202c;
+    text-align: right;
+}
+
+.barContainer {
+    height: 24px;
+    background: #f7fafc;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.bar {
+    height: 100%;
+    background: linear-gradient(90deg, #38a169, #48bb78);
+    border-radius: 12px;
+    transition: width 0.5s ease;
+}
+
+.barValue {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a202c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .reportTypesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .reportCard {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .barItem {
+        grid-template-columns: 80px 1fr 50px;
+    }
+
+    .barLabel {
+        font-size: 0.75rem;
+    }
+}

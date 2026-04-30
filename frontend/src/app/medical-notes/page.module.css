@@ -1,0 +1,83 @@
+.notesPage {
+    max-width: 900px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xl);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.formCard {
+    margin: var(--spacing-xl) 0;
+}
+
+.formActions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    cursor: pointer;
+}
+
+.notesList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.noteCard {
+    padding: var(--spacing-lg);
+}
+
+.noteHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+}
+
+.noteDate {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.noteCard h4 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.noteCard p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm);
+}
+
+.noteBy {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.noData {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+}

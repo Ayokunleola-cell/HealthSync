@@ -1,0 +1,353 @@
+.messagesPage {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary-color);
+}
+
+.header p {
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+}
+
+/* Layout */
+.messagesLayout {
+    display: grid;
+    grid-template-columns: 200px 350px 1fr;
+    gap: 1rem;
+    min-height: 600px;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+/* Sidebar */
+.sidebar {
+    background: #f7fafc;
+    padding: 1rem;
+    border-right: 1px solid var(--border-color);
+}
+
+.folderBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #1a202c;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.folderBtn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.folderBtn.active {
+    background: #38a169;
+    color: white;
+}
+
+.folderBtn .badge {
+    margin-left: auto;
+    background: #f56565;
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+}
+
+.folderBtn.active .badge {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Message List */
+.messageList {
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+}
+
+.messageItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.messageItem:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.messageItem.selected {
+    background: rgba(56, 161, 105, 0.1);
+}
+
+.messageItem.unread {
+    background: rgba(56, 161, 105, 0.05);
+}
+
+.messageItem.unread .messageSender {
+    font-weight: 600;
+}
+
+.messageAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #38a169, #48bb78);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.messagePreview {
+    flex: 1;
+    min-width: 0;
+}
+
+.messageMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.messageSender {
+    font-size: 0.9rem;
+    color: #1a202c;
+}
+
+.messageTime {
+    font-size: 0.75rem;
+    color: #718096;
+}
+
+.messageSubject {
+    font-size: 0.85rem;
+    color: #1a202c;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.messageSnippet {
+    font-size: 0.8rem;
+    color: #718096;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.urgentBadge {
+    background: #f56565;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Message Detail */
+.messageDetail {
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.detailHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.detailHeader h2 {
+    font-size: 1.25rem;
+    color: #1a202c;
+}
+
+.detailTime {
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.detailMeta {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.9rem;
+    color: #718096;
+    margin-bottom: 1.5rem;
+}
+
+.detailContent {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #1a202c;
+    white-space: pre-wrap;
+    margin-bottom: 2rem;
+}
+
+.detailActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.emptyState,
+.emptyDetail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #718096;
+    gap: 1rem;
+}
+
+/* Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+}
+
+.modal {
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 10000;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+.modalHeader h3 {
+    font-size: 1.25rem;
+    color: #1a202c;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #718096;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+    background: #f7fafc;
+    color: #1a202c;
+}
+
+.composeForm {
+    padding: 1.5rem;
+    background: #ffffff;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.composeForm .input-group {
+    margin-bottom: 1rem;
+}
+
+.composeForm textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    background: #f7fafc;
+    flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .messagesLayout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .folderBtn {
+        padding: 0.5rem 1rem;
+    }
+
+    .messageDetail {
+        display: none;
+    }
+}

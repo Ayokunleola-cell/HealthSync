@@ -1,0 +1,291 @@
+.dashboard {
+    max-width: 1000px;
+}
+
+.header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    gap: var(--spacing-lg);
+}
+
+/* Alert Banner */
+.alertBanner {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(237, 137, 54, 0.2);
+    border: 1px solid var(--warning);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-xl);
+    color: var(--warning);
+}
+
+.alertBanner a {
+    margin-left: auto;
+    color: var(--warning);
+    font-weight: 500;
+}
+
+/* Patient Card */
+.patientCard {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.patientHeader {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.patientPhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, #ed8936, #ed893699);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+}
+
+.patientHeader h2 {
+    margin-bottom: 4px;
+}
+
+.condition {
+    color: var(--text-muted);
+    font-size: 0.9375rem;
+}
+
+.statusBadge {
+    margin-left: auto;
+    font-size: 0.875rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* Vitals Overview */
+.vitalsOverview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.vitalCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--bg-glass);
+    border-radius: var(--radius-lg);
+}
+
+.vitalIcon {
+    font-size: 2rem;
+}
+
+.vitalValue {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.vitalLabel {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.lastUpdated {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.noData {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+/* Info Grid */
+.infoGrid {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.aptList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.aptItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+}
+
+.aptDate {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.aptTime {
+    font-weight: 600;
+    color: var(--primary-400);
+}
+
+.aptTitle {
+    flex: 1;
+}
+
+/* Contact */
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.contactItem {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-md);
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+}
+
+.contactItem span:first-child {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.contactItem span:last-child {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.contactActions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.contactActions .btn {
+    flex: 1;
+}
+
+/* Emergency */
+.emergencySection {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+}
+
+.emergencyButton {
+    display: inline-block;
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    background: linear-gradient(135deg, #f56565, #c53030);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-radius: var(--radius-xl);
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(245, 101, 101, 0.4);
+    transition: all var(--transition-base);
+    animation: pulse 2s infinite;
+}
+
+.emergencyButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 40px rgba(245, 101, 101, 0.5);
+}
+
+.emergencySection p {
+    margin-top: var(--spacing-md);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 30px rgba(245, 101, 101, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 8px 50px rgba(245, 101, 101, 0.6);
+    }
+}
+
+@media (max-width: 768px) {
+    .vitalsOverview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .patientHeader {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .statusBadge {
+        margin-left: 0;
+    }
+}
+/* Quick Video Actions */
+.quickVideoActions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.videoActionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.25rem 1rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.videoActionCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-500);
+  box-shadow: var(--shadow-md);
+}
+
+.videoIcon {
+  font-size: 1.75rem;
+}
+
+@media (max-width: 640px) {
+  .quickVideoActions {
+    grid-template-columns: 1fr;
+  }
+}

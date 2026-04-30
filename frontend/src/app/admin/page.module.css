@@ -1,0 +1,142 @@
+.adminPage {
+    max-width: 1200px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xl);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.statCard {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.statValue {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-600);
+    margin-bottom: var(--spacing-xs);
+}
+
+.statLabel {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+/* Section Card */
+.sectionCard {
+    margin-bottom: var(--spacing-xl);
+}
+
+.sectionCard h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+.viewAll {
+    font-size: 0.75rem;
+    color: var(--primary-500);
+}
+
+/* Role Grid */
+.roleGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+}
+
+.roleItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+}
+
+.roleDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.roleName {
+    text-transform: capitalize;
+    font-size: 0.875rem;
+}
+
+.roleCount {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+}
+
+.table th,
+.table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table th {
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg-glass);
+}
+
+.table td {
+    color: var(--text-secondary);
+}
+
+.roleBadge {
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Quick Actions */
+.quickActions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quickActions {
+        flex-direction: column;
+    }
+}

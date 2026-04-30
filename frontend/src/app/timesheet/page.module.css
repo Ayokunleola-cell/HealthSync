@@ -1,0 +1,310 @@
+.timePage {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.header h1 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #38a169;
+}
+
+.header p {
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+.loading,
+.accessDenied {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+    color: #718096;
+    text-align: center;
+}
+
+/* Clock Card */
+.clockCard {
+    background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+    color: white;
+    margin-bottom: 1.5rem;
+    padding: 2rem;
+    border-radius: 16px;
+}
+
+.clockDisplay {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.statusIndicator {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.statusIndicator.active {
+    background: rgba(34, 197, 94, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.timer {
+    margin: 1.5rem 0;
+}
+
+.timerValue {
+    font-size: 4rem;
+    font-weight: 700;
+    font-family: 'Monaco', 'Consolas', monospace;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.timerLabel {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.5rem;
+}
+
+.currentTime {
+    font-size: 1.25rem;
+    opacity: 0.9;
+}
+
+.clockActions {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.clockActions .input-group {
+    margin-bottom: 1rem;
+}
+
+.clockActions .input-label {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.clockActions .input {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.clockActions .input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.clockActions .input option {
+    color: #1a202c;
+    background: #ffffff;
+}
+
+.shiftInfo {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.shiftInfo p {
+    margin: 0.25rem 0;
+    color: white;
+}
+
+.clockInBtn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: #22c55e;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.clockInBtn:hover {
+    background: #16a34a;
+}
+
+.clockOutBtn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: #ef4444;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.clockOutBtn:hover {
+    background: #dc2626;
+}
+
+/* Summary Grid */
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.summaryCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.summaryIcon {
+    color: #38a169;
+    margin-bottom: 0.75rem;
+}
+
+.summaryValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.summaryLabel {
+    font-size: 0.85rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+/* Time Table */
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.timeTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.timeTable th,
+.timeTable td {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.timeTable th {
+    background: #f7fafc;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #718096;
+}
+
+.timeTable tbody tr:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.emptyTable {
+    text-align: center;
+    color: #718096;
+    padding: 3rem 1rem !important;
+}
+
+.overtimeBadge {
+    display: inline-block;
+    background: #fbbf24;
+    color: #92400e;
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}
+
+.statusBadge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.statusBadge.active {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+}
+
+.statusBadge.completed {
+    background: rgba(59, 130, 246, 0.15);
+    color: #2563eb;
+}
+
+.statusBadge.pending_approval {
+    background: rgba(251, 191, 36, 0.15);
+    color: #d97706;
+}
+
+.statusBadge.approved {
+    background: rgba(34, 197, 94, 0.15);
+    color: #16a34a;
+}
+
+.statusBadge.rejected {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .timerValue {
+        font-size: 2.5rem;
+    }
+
+    .summaryGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .timeTable th,
+    .timeTable td {
+        padding: 0.625rem 0.5rem;
+        font-size: 0.85rem;
+    }
+}

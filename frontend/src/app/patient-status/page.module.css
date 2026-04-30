@@ -1,0 +1,71 @@
+.statusPage {
+    max-width: 700px;
+}
+
+.header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+}
+
+.patientCard,
+.vitalsCard {
+    margin-bottom: var(--spacing-xl);
+}
+
+.patientCard h3,
+.vitalsCard h3 {
+    margin-bottom: var(--spacing-md);
+}
+
+.notes {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-top: var(--spacing-sm);
+}
+
+.vitalsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.vitalsGrid>div {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--bg-glass);
+    border-radius: var(--radius-lg);
+}
+
+.vitalsGrid span:first-child {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: var(--spacing-sm);
+}
+
+.vitalsGrid strong {
+    font-size: 1.5rem;
+    display: block;
+    color: var(--text-primary);
+}
+
+.vitalsGrid span:last-child {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.updated {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+}

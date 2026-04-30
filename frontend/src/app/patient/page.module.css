@@ -1,0 +1,266 @@
+/* Patient Portal - AD-Friendly Design */
+/* Large text, high contrast, simple layout */
+
+.patientPortal {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.loadingText {
+    font-size: 1.5rem;
+    margin-top: var(--spacing-lg);
+}
+
+/* Time Display */
+.timeDisplay {
+    background: var(--bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-2xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.time {
+    display: block;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--primary-400);
+    line-height: 1.2;
+}
+
+.date {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-top: var(--spacing-sm);
+}
+
+/* Greeting */
+.greeting {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-2xl);
+    color: var(--text-primary);
+}
+
+/* Sections */
+.section {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+/* Medications */
+.medGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.medCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    text-align: left;
+}
+
+.medIcon {
+    font-size: 2.5rem;
+}
+
+.medInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.medName {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.medDose {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.medTime {
+    font-size: 0.9375rem;
+    color: var(--primary-400);
+    font-weight: 500;
+}
+
+/* Appointment */
+.appointmentCard {
+    background: var(--bg-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    border: 2px solid var(--primary-500);
+}
+
+.aptTitle {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.aptDateTime {
+    font-size: 1.25rem;
+    color: var(--primary-400);
+}
+
+/* Action Buttons */
+.actionButtons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.actionBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    background: var(--bg-card);
+    border: 3px solid var(--primary-500);
+    border-radius: var(--radius-2xl);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.actionBtn:hover {
+    background: var(--primary-500);
+    transform: scale(1.02);
+}
+
+.actionBtn:hover .actionLabel {
+    color: white;
+}
+
+.actionIcon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: var(--spacing-md);
+}
+
+.actionLabel {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Emergency Button */
+.emergencyBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: var(--spacing-2xl);
+    background: linear-gradient(135deg, #f56565, #c53030);
+    border: none;
+    border-radius: var(--radius-2xl);
+    cursor: pointer;
+    margin-bottom: var(--spacing-xl);
+    box-shadow: 0 10px 40px rgba(245, 101, 101, 0.5);
+    transition: all var(--transition-base);
+    animation: emergencyPulse 2s infinite;
+}
+
+.emergencyBtn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 15px 50px rgba(245, 101, 101, 0.6);
+}
+
+.emergencyBtn:active {
+    transform: scale(0.98);
+}
+
+.emergencyIcon {
+    font-size: 5rem;
+    display: block;
+}
+
+.emergencyText {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.emergencySubtext {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: var(--spacing-sm);
+}
+
+@keyframes emergencyPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 10px 40px rgba(245, 101, 101, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 10px 60px rgba(245, 101, 101, 0.7);
+    }
+}
+
+/* Caregiver Info */
+.caregiverInfo {
+    padding: var(--spacing-lg);
+    background: var(--bg-glass);
+    border-radius: var(--radius-xl);
+    font-size: 1.125rem;
+}
+
+.caregiverInfo p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.caregiverInfo p:last-child {
+    margin-bottom: 0;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .time {
+        font-size: 3rem;
+    }
+
+    .greeting {
+        font-size: 2rem;
+    }
+
+    .medGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .actionButtons {
+        grid-template-columns: 1fr;
+    }
+
+    .emergencyText {
+        font-size: 2rem;
+    }
+}

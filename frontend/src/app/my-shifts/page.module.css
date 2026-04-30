@@ -1,0 +1,408 @@
+/* My Shifts Page - Staff Dashboard */
+.shiftsPage {
+    max-width: 1200px;
+}
+
+.header {
+    margin-bottom: 1.5rem;
+}
+
+.header h1 {
+    margin-bottom: 0.25rem;
+}
+
+.header p {
+    color: var(--text-muted);
+}
+
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 1rem;
+    color: var(--text-muted);
+}
+
+/* Active Shift Card */
+.activeShiftCard {
+    background: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
+    border-radius: var(--radius-2xl);
+    padding: 0;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(5, 150, 105, 0.3);
+}
+
+.activeHeader {
+    padding: 1rem 1.5rem;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.liveIndicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+}
+
+.liveDot {
+    width: 10px;
+    height: 10px;
+    background: #fbbf24;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
+.activeContent {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .activeContent {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.timerSection {
+    text-align: center;
+}
+
+.timer {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: white;
+    line-height: 1;
+}
+
+.timerSection span {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.activeDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.patientInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.patientAvatar {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+.patientInfo>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.patientInfo strong {
+    color: white;
+    font-size: 1.125rem;
+}
+
+.patientInfo span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8125rem;
+}
+
+.shiftTimes {
+    display: flex;
+    gap: 2rem;
+}
+
+.shiftTimes>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.shiftTimes label {
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.shiftTimes span {
+    color: white;
+    font-size: 0.9375rem;
+}
+
+.clockOutBtn {
+    padding: 1rem 1.5rem;
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clockOutBtn:hover:not(:disabled) {
+    background: #dc2626;
+    transform: scale(1.02);
+}
+
+.clockOutBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Summary Grid */
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .summaryGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.summaryCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.summaryValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-500);
+    line-height: 1.2;
+}
+
+.summaryLabel {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 2rem;
+}
+
+.section h2 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.emptyState {
+    background: var(--bg-glass);
+    border-radius: var(--radius-xl);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.emptyState span {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Shifts Grid */
+.shiftsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+}
+
+.shiftCard {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 1.25rem;
+    transition: all 0.2s;
+}
+
+.shiftCard:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.shiftCard.active {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.15);
+}
+
+.shiftHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+}
+
+.shiftTime {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.shiftPatient {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.shiftPatient .patientAvatar {
+    background: var(--gradient-primary);
+}
+
+.shiftPatient>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.shiftPatient strong {
+    font-size: 1rem;
+}
+
+.shiftPatient span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.shiftNotes {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    background: var(--bg-glass);
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+}
+
+.shiftActions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.hoursWorked {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Upcoming List */
+.upcomingList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.upcomingItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+.upcomingDate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+    padding: 0.5rem;
+    background: var(--bg-glass);
+    border-radius: var(--radius-md);
+}
+
+.dateDay {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-500);
+    line-height: 1;
+}
+
+.dateMonth {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.upcomingDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+}
+
+.upcomingDetails strong {
+    font-size: 0.9375rem;
+}
+
+.upcomingDetails span {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
